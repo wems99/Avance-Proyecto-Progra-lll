@@ -1,0 +1,48 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'idea'
+    id 'eclipse'
+    id 'checkstyle'
+}
+
+group 'JAVA_PACKAGE_PLACEHOLDER'
+version '1.0'
+
+sourceCompatibility = 1.8
+mainClassName = "JAVA_PACKAGE_PLACEHOLDER.Main"
+
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
+checkstyle {
+    toolVersion "8.25"
+    configFile = file("${rootDir}/config/checkstyle/checkstyle.xml")
+}
+
+test {
+    useJUnitPlatform()
+}
+
+dependencies {
+    // SLF4J logging abstraction layer
+    compile group: 'org.slf4j', name: 'slf4j-api', version:'1.7.28'
+    // LOG4J bindings for SLF4J
+    compile group: 'org.apache.logging.log4j', name: 'log4j-slf4j-impl', version: '2.12.1'
+
+    // JUnit 5
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.5.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.5.2'
+
+    // TestFx
+    testCompile "org.testfx:testfx-core:4.0.16-alpha"
+    testCompile 'org.junit.jupiter:junit-jupiter-api:5.5.2'
+    testCompile "org.testfx:testfx-junit5:4.0.16-alpha"
+    testCompile group: 'org.hamcrest', name: 'hamcrest', version: '2.1'
+
+    // Project Lombok
+    compileOnly 'org.projectlombok:lombok:1.18.10'
+    annotationProcessor 'org.projectlombok:lombok:1.18.8'
+}
